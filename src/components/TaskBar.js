@@ -7,7 +7,7 @@ function TaskBar (props) {
       <div className='editButtons'>
         <div className='edit'>Edit</div>
         <div className='delete' onClick={() => props.delete()}>Delete</div>
-        <div className='new'>New</div>
+        <div className='new' onClick={() => props.newPersonMode()}>New</div>
       </div>
       <div className='nextButton' onClick={() => props.changeIndex('next')}>Next</div>
     </div>
