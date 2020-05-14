@@ -13,16 +13,25 @@ class App extends Component{
     }
 
     this.changeIndex = this.changeIndex.bind(this)
+    this.deletePerson = this.deletePerson.bind(this)
   }
 
   changeIndex(val) {
-    console.log(this.state.index)
     if (this.state.index !== 0 && val ==='previous') {
       this.setState({index: this.state.index - 1})
     }
     if (this.state.index !== this.state.people.length - 1 && val ==='next') {
       this.setState({index: this.state.index + 1})
     }
+  }
+
+  deletePerson() {
+    let newPersonArray = this.state.people.slice()
+    let cutPerson = newPersonArray.splice(this.state.index, 1)
+    if (this.state.index + 1 === this.state.people.length){
+      this.setState({index: this.state.index - 1})
+    }
+    this.setState({people: newPersonArray})
   }
 
   render() {
@@ -32,8 +41,8 @@ class App extends Component{
           <h1>Home</h1>
         </header>
         <div className='background'>
-          <InfoWindow peopleLength={this.state.people.length} person={this.state.people[this.state.index]}/>
-          <TaskBar changeIndex = {this.changeIndex}/>
+          <InfoWindow peopleIndex={this.state.index} peopleLength={this.state.people.length} person={this.state.people[this.state.index]}/>
+          <TaskBar delete={this.deletePerson} changeIndex = {this.changeIndex}/>
         </div>
       </div>
     )

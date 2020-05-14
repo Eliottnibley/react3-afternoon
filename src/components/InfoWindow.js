@@ -6,7 +6,7 @@ function InfoWindow(props) {
   return(
     <div className='infoWindow'>
       <h2 className='personName'>{person.name.first} {person.name.last}</h2>
-      <h2 className='counter'>{person.id}/{length}</h2>
+      <h2 className='counter'>{props.peopleIndex + 1}/{length}</h2>
       <div className='personalInfo'>
         <p><span>From: </span>{person.city}, {person.country}</p>
         <p><span>Job Title: </span>{person.title}</p>
