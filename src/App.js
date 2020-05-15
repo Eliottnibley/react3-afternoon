@@ -12,12 +12,14 @@ class App extends Component{
       people: Data,
       index: 0,
       newMode: false,
-      editMode: false
+      editMode: false,
+      newPersonInput: []
     }
 
     this.changeIndex = this.changeIndex.bind(this)
     this.deletePerson = this.deletePerson.bind(this)
     this.newPersonMode = this.newPersonMode.bind(this)
+    this.newInputHandler = this.newInputHandler.bind(this)
   }
 
   changeIndex(val) {
@@ -31,7 +33,7 @@ class App extends Component{
 
   deletePerson() {
     let newPersonArray = this.state.people.slice()
-    let cutPerson = newPersonArray.splice(this.state.index, 1)
+    newPersonArray.splice(this.state.index, 1)
     if (this.state.index + 1 === this.state.people.length){
       this.setState({index: this.state.index - 1})
     }
@@ -47,6 +49,10 @@ class App extends Component{
     }
   }
 
+  newInputHandler (inputArray) {
+    console.log(inputArray)
+  }
+
   render() {
     if(this.state.newMode){
       return (
@@ -55,7 +61,7 @@ class App extends Component{
             <h1>Home</h1>
           </header>
           <div className='background'>
-            <NewPersonWindow newPersonMode={this.newPersonMode}/>
+            <NewPersonWindow newInputHandler={this.newInputHandler}  newPersonMode={this.newPersonMode}/>
           </div>
         </div>
       )
