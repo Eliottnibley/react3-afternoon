@@ -13,7 +13,7 @@ class App extends Component{
       index: 0,
       newMode: false,
       editMode: false,
-      newPersonInput: []
+      idCounter: 26
     }
 
     this.changeIndex = this.changeIndex.bind(this)
@@ -49,8 +49,26 @@ class App extends Component{
     }
   }
 
-  newInputHandler (inputArray) {
-    console.log(inputArray)
+  newInputHandler (input) {
+    if (input.length !== 9){
+      window.alert('Please fill in all feilds')
+    }
+    else {
+      let newPerson = {
+        id: this.state.idCounter,
+        name: {first: input[0], last: input[1]},
+        city: input[2],
+        country: input[3],
+        employer: input[4],
+        title: input[5],
+        favoriteMovies: [input[6], input[7], input[8]]
+      }
+      let newpeopleArray = this.state.people.slice()
+      newpeopleArray.unshift(newPerson)
+      this.setState({people: newpeopleArray})
+      this.setState({index: 0})
+      this.setState({newMode: false})
+    }
   }
 
   render() {
